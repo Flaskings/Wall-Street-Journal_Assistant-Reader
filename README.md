@@ -1,5 +1,5 @@
-# Reading Assistant for the Wall Stree Journal
-Spider customized with selenium and voice recognition technologies to carry out intelligent searches for articles and reading automation for the ([www.wsj.com](www.wsj.com) site.
+# Reading Assistant for the Wall Street Journal
+Spider customized with selenium and voice recognition technologies to carry out intelligent searches for articles and reading automation for the [www.wsj.com](www.wsj.com) site.
 
 # Brief description
 Spider customized with selenium and voice recognition technologies to carry out intelligent searches for articles and reading automation.
