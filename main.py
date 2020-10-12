@@ -10,25 +10,32 @@ class App:
     def __init__(self, ):
         self.error = None
         try:
-            self.driver = webdriver.Chrome(ChromeDriverManager().install())
-        except Exception as e:
-            self.error = True
-            print('Chrome browser not found in os\n', e)
-        try:
             self.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+            self.error = False
         except Exception as e:
             self.error = True
             print('Firefox browser not found in os\n', e)
-        try:
-            self.driver = webdriver.Edge(EdgeChromiumDriverManager().install())
-        except Exception as e:
-            self.error = True
-            print('Edge browser not found in os\n', e)
-        try:
-            self.driver = webdriver.Opera(executable_path=OperaDriverManager().install())
-        except Exception as e:
-            self.error = True
-            print('Opera browser not found in os\n', e)
+        if self.error:
+            try:
+                self.driver = webdriver.Chrome(ChromeDriverManager().install())
+                self.error = False
+            except Exception as e:
+                self.error = True
+                print('Chrome browser not found in os\n', e)
+        if self.error:
+            try:
+                self.driver = webdriver.Edge(EdgeChromiumDriverManager().install())
+                self.error = False
+            except Exception as e:
+                self.error = True
+                print('Edge browser not found in os\n', e)
+        if self.error:
+            try:
+                self.driver = webdriver.Opera(executable_path=OperaDriverManager().install())
+                self.error = False
+            except Exception as e:
+                self.error = True
+                print('Opera browser not found in os\n', e)
         self.main_url = 'https://www.wsj.com/'
         self.driver.get(self.main_url)
         self.performance()
