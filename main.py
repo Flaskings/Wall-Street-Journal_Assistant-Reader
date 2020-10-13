@@ -42,27 +42,58 @@ class App:
         self.menu = [
             {'Home': ''},
             {'World':
-                 [{'Regions': ['Africa', 'Asia', 'Canada', 'China', 'Europe', 'Latin America', 'Middle East']},
+                 [{'Regions':
+                       ['Africa',
+                        'Asia',
+                        'Canada',
+                        'China',
+                        'Europe',
+                        'Latin America',
+                        'Middle East']},
                   {'Sections': 'Economy'},
                   {'More': 'World Video'}]
              },
             {'U.S.':
-                 [{'Sections': ['Economy', 'Law', 'New', 'York', 'Politics']},
-                  {'Columns & Blogs': ['Real Time Economics', 'Washington Wire']},
-                  {'More': ['WSJ Noted.', 'Journal Report', 'U.S.Video', "What's News Podcast"]}]
+                 [{'Sections':
+                       ['Economy',
+                        'Law',
+                        'New',
+                        'York',
+                        'Politics']},
+                  {'Columns & Blogs':
+                       ['Real Time Economics',
+                        'Washington Wire']},
+                  {'More':
+                       ['WSJ Noted.',
+                        'Journal Report',
+                        'U.S.Video',
+                        "What's News Podcast"]}]
              },
             {'Politics':
-                 [{'Sections': ['Election 2020', 'Campaign Wire']},
-                  {'More': ['WSJ/NBC News Poll', 'Politics Video']}]
+                 [{'Sections':
+                       ['Election 2020',
+                        'Campaign Wire']},
+                  {'More':
+                       ['WSJ/NBC News Poll',
+                        'Politics Video']}]
              },
             {'Economy':
                  [{'Blogs': 'Real Time Economics'},
-                  {'WSJ Pro': ['Bankruptcy', 'Central Banking', 'Private Equity', 'Strategic Intelligence',
-                               'Venture Capital']},
-                  {'More': ['Economic Forecasting Survey', 'Economy Video']}]
+                  {'WSJ Pro':
+                       ['Bankruptcy',
+                        'Central Banking',
+                        'Private Equity',
+                        'Strategic Intelligence',
+                        'Venture Capital']},
+                  {'More':
+                       ['Economic Forecasting Survey',
+                        'Economy Video']}]
              },
             {'Business':
-                 [{'Sections': ['Management', 'Tech/WSJ.D', 'The Future of Everything']},
+                 [{'Sections':
+                       ['Management',
+                        'Tech/WSJ.D',
+                        'The Future of Everything']},
                   {'Industries':
                        ['Aerospace & Defense'
                         'Autos & Transportation'
@@ -99,7 +130,126 @@ class App:
                        ['Business Video',
                         'Journal Report',
                         'Business Podcast']}]
-             }
+             },
+            {'Tech':
+                 [{'Sections':
+                       ['CIO Journal',
+                        'The Future of Everything']},
+                  {'Columns & Blogs':
+                       ['Christopher Mims',
+                        'Joanna Stern' 
+                        'Julie Jargon']},
+                  {'More':
+                       ['Tech Video',
+                        'Tech Podcast',
+                        'Startup Stock Tracker']}]
+             },
+            {'Markets':
+                 [{'Sections':
+                       ['Bonds',
+                        'Commercial Real Estate',
+                        'Commodities & Futures',
+                        'Stocks',
+                        'Personal Finance',
+                        'WSJ Money']},
+                  {'Columns & Blogs':
+                       ['Heard on the Street',
+                        'MoneyBeat',
+                        'Wealth Adviser']},
+                  {'Market Data':
+                       ['Market Data Home',
+                        'U.S. Stocks', 'U.S. Stocks',
+                        'Currencies',
+                        'Companies',
+                        'Commodities',
+                        'Bonds & Rates',
+                        'Mutual Funds & ETFs']},
+                  {'More':
+                       ['CFO Journal',
+                        'Journal Report',
+                        'Markets Video',
+                        'Your Money Briefing Podcast',
+                        'Secrets of Wealthy Women Podcast',
+                        'Search Quotes and Companies']}],
+             },
+            {'Opinion':
+                 [{'Columnists':
+                       ['Gerard Baker',
+                        'Sadanand Dhume',
+                        'James Freeman',
+                        'William A. Galston',
+                        'Daniel Henninger',
+                        'Holman W. Jenkins',
+                        'Andy Kessler',
+                        'William McGurn',
+                        'Walter Russell Mead',
+                        'Peggy Noonan',
+                        "Mary Anastasia O'Grady",
+                        'Jason Riley',
+                        'Joseph Sternberg',
+                        'Kimberley A. Strassel']},
+                  {'Reviews':
+                       ['Books',
+                        'Film',
+                        'Television',
+                        'Theater',
+                        'Art',
+                        'Masterpiece Series',
+                        'Music',
+                        'Dance',
+                        'Opera',
+                        'Exhibition',
+                        'Cultural Commentary']
+                   },
+                  {'More':
+                       ['Editorials',
+                        'Commentary',
+                        'Future View',
+                        'Letters to the Editor',
+                        'The Weekend Interview',
+                        'Potomac Watch Podcast',
+                        'Foreign Edition Podcast',
+                        'Opinion Video',
+                        'Notable & Quotable',
+                        'Best of the Web Newsletter',
+                        'Morning Editorial Report Newsletter']}]
+             },
+            {'Life & Arts':
+                 [{'Sections':
+                       ['Arts',
+                        'Books',
+                        'Cars',
+                        'Food & Drink',
+                        'Health',
+                        'Ideas',
+                        'Reading & Retreating',
+                        'Real Estate',
+                        'Science',
+                        'Sports',
+                        'Style & Fashion',
+                        'Travel']},
+
+                  {'More':
+                       ['WSJ. Magazine',
+                        'WSJ Puzzles',
+                        'The Future of Everything',
+                        'Far & Away',
+                        'Life Video',
+                        'Arts Video']}],
+             },
+            {'Real State':
+                 [{'Sections':
+                       ['Commercial Real Estate',
+                        'House of the Day']},
+                  {'More': 'Real Estate Video'}]},
+            {'WSJ.Magazine':
+                 [{'Sections':
+                       ['Fashion',
+                        'Art & Design',
+                        'Travel',
+                        'Food',
+                        'Culture']}]}
+
         ]
 
     def cover_look(self):  # todo: check cover news
