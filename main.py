@@ -137,7 +137,7 @@ class App:
                         'The Future of Everything']},
                   {'Columns & Blogs':
                        ['Christopher Mims',
-                        'Joanna Stern' 
+                        'Joanna Stern'
                         'Julie Jargon']},
                   {'More':
                        ['Tech Video',
@@ -256,7 +256,25 @@ class App:
         pass
 
     def performance(self, ):
-        sleep(2)
+        tabs = [{'World': '2'},
+                {'U.S.': '3'},
+                {'Politics': '4'},
+                {'Economy': '5'},
+                {'Business': '6'},
+                {'Tech': '7'},
+                {'Markets': '8'},
+                {'Opinion': '9'},
+                {'Life & Arts': '10'},
+                {'Real State': '11'},
+                {'WSJ.Magazine': '12'}]
+        i = 0
+        print("1 \tHome")
+        for tab in tabs:
+            i += 1
+            for j in tab.keys():
+                print("%s \t%s" % (tab[j], j))
+                element = self.driver.find_element_by_xpath('//nav/ul/li[' + tab[j] + ']/a')  # world
+                element.click()
         self.driver.close()
 
 
