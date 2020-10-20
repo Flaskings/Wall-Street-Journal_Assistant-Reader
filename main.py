@@ -1,5 +1,6 @@
 from time import sleep
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
@@ -15,6 +16,7 @@ class App:
         except Exception as e:
             self.error = True
             print('Firefox browser not found in os\n', e)
+
         if self.error:
             try:
                 self.driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -22,6 +24,7 @@ class App:
             except Exception as e:
                 self.error = True
                 print('Chrome browser not found in os\n', e)
+
         if self.error:
             try:
                 self.driver = webdriver.Edge(EdgeChromiumDriverManager().install())
@@ -29,6 +32,7 @@ class App:
             except Exception as e:
                 self.error = True
                 print('Edge browser not found in os\n', e)
+
         if self.error:
             try:
                 self.driver = webdriver.Opera(executable_path=OperaDriverManager().install())
@@ -36,11 +40,10 @@ class App:
             except Exception as e:
                 self.error = True
                 print('Opera browser not found in os\n', e)
+
         self.main_url = 'https://www.wsj.com/'
         self.driver.get(self.main_url)
-        self.performance()
         self.menu = [
-            {'Home': ''},
             {'World':
                  [{'Regions':
                        ['Africa',
@@ -251,11 +254,12 @@ class App:
                         'Culture']}]}
 
         ]
+        self.performance(1)
 
     def cover_look(self):  # todo: check cover news
         pass
 
-    def performance(self, ):
+    def performance(self, program):
         tabs = [{'World': '2'},
                 {'U.S.': '3'},
                 {'Politics': '4'},
@@ -267,15 +271,28 @@ class App:
                 {'Life & Arts': '10'},
                 {'Real State': '11'},
                 {'WSJ.Magazine': '12'}]
-        i = 0
-        print("1 \tHome")
-        for tab in tabs:
-            i += 1
-            for j in tab.keys():
-                print("%s \t%s" % (tab[j], j))
-                element = self.driver.find_element_by_xpath('//nav/ul/li[' + tab[j] + ']/a')  # world
-                element.click()
-        self.driver.close()
+
+        if program == 0:
+            i = 0
+            print("1 \tHome")
+            for tab in tabs:
+                i += 1
+                for j in tab.keys():
+                    print("%s \t%s" % (tab[j], j))
+                    element = self.driver.find_element_by_xpath('//nav/ul/li[' + tab[j] + ']/a')  # tab
+                    element.click()
+                    sleep(1)
+
+            self.driver.close()
+
+        if program == 1:
+            print("2 \tWorld")
+            element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[2]/a')  # tab
+            hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
+            hover.perform()
+            sleep(4)
+
+            self.driver.close()
 
 
 if __name__ == '__main__':
