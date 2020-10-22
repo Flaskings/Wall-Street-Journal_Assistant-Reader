@@ -1,10 +1,15 @@
+from telnetlib import EC
 from time import sleep
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class App:
@@ -290,8 +295,15 @@ class App:
             element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[2]/a')  # tab
             hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
             hover.perform()
+            sleep(1)
+            element = WebDriverWait(self.driver, 100).until(
+                EC.element_to_be_clickable((By.XPATH, "//nav/ul/li[2]/div/div/ul[1]/li[2]/a"))
+            )
+            try:
+                element.click()
+            except WebDriverException:
+                print("Element is not clickable")
             sleep(4)
-
             self.driver.close()
 
 
