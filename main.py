@@ -277,6 +277,14 @@ class App:
                 {'Real State': '11'},
                 {'WSJ.Magazine': '12'}]
 
+        subs = [{'Africa': '2'},
+                {'Asia': '3'},
+                {'Canada': '4'},
+                {'China': '5'},
+                {'Europe': '6'},
+                {'Latin America': '7'},
+                {'Middle East': '8'}]
+
         if program == 0:
             i = 0
             print("1 \tHome")
@@ -292,18 +300,20 @@ class App:
 
         if program == 1:
             print("2 \tWorld")
-            element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[2]/a')  # tab
-            hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
-            hover.perform()
-            sleep(1)
-            element = WebDriverWait(self.driver, 100).until(
-                EC.element_to_be_clickable((By.XPATH, "//nav/ul/li[2]/div/div/ul[1]/li[2]/a"))
-            )
-            try:
-                element.click()
-            except WebDriverException:
-                print("Element is not clickable")
-            sleep(4)
+            for sub in subs:
+                for k in sub.keys():
+                    element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[2]/a')  # tab
+                    hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
+                    hover.perform()
+                    sleep(1)
+                    element = WebDriverWait(self.driver, 100).until(
+                        EC.element_to_be_clickable((By.XPATH, "//nav/ul/li[2]/div/div/ul[1]/li[" + sub[k] + "]/a"))
+                    )
+                    try:
+                        ActionChains(self.driver).click(element).perform()
+                    except WebDriverException:
+                        print("Element is not clickable")
+                    sleep(4)
             self.driver.close()
 
 
