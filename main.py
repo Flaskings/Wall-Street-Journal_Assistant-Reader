@@ -299,18 +299,21 @@ class App:
             self.driver.close()
 
         if program == 1:
-            print("2 \tWorld")
+            index = 0
+            print(' '.join(tabs[0].keys()))
             for sub in subs:
                 for k in sub.keys():
-                    element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[2]/a')  # tab
+                    element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
                     hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
                     hover.perform()
                     sleep(1)
                     element = WebDriverWait(self.driver, 100).until(
-                        EC.element_to_be_clickable((By.XPATH, "//nav/ul/li[2]/div/div/ul[1]/li[" + sub[k] + "]/a"))
+                        EC.element_to_be_clickable((By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[1]/li[" + sub[k] + "]/a"))
                     )
                     try:
                         ActionChains(self.driver).click(element).perform()
+                        print(' '.join(subs[index].keys()))
+                        index += 1
                     except WebDriverException:
                         print("Element is not clickable")
                     sleep(4)
