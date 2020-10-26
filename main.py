@@ -11,6 +11,8 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 
+from data import tabs, subs, caps
+
 
 class App:
     def __init__(self, ):
@@ -49,18 +51,6 @@ class App:
         self.main_url = 'https://www.wsj.com/'
         self.driver.get(self.main_url)
         self.menu = [
-            {'World':
-                 [{'Regions':
-                       ['Africa',
-                        'Asia',
-                        'Canada',
-                        'China',
-                        'Europe',
-                        'Latin America',
-                        'Middle East']},
-                  {'Sections': 'Economy'},
-                  {'More': 'World Video'}]
-             },
             {'U.S.':
                  [{'Sections':
                        ['Economy',
@@ -265,25 +255,6 @@ class App:
         pass
 
     def performance(self, program):
-        tabs = [{'World': '2'},
-                {'U.S.': '3'},
-                {'Politics': '4'},
-                {'Economy': '5'},
-                {'Business': '6'},
-                {'Tech': '7'},
-                {'Markets': '8'},
-                {'Opinion': '9'},
-                {'Life & Arts': '10'},
-                {'Real State': '11'},
-                {'WSJ.Magazine': '12'}]
-
-        subs = [{'Africa': '2'},
-                {'Asia': '3'},
-                {'Canada': '4'},
-                {'China': '5'},
-                {'Europe': '6'},
-                {'Latin America': '7'},
-                {'Middle East': '8'}]
 
         if program == 0:
             i = 0
@@ -301,14 +272,16 @@ class App:
         if program == 1:
             index = 0
             print(' '.join(tabs[0].keys()))
-            for sub in subs:
+            for sub in subs[:-2]:
                 for k in sub.keys():
-                    element_to_hover_over = self.driver.find_element_by_xpath('//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
+                    element_to_hover_over = self.driver.find_element_by_xpath(
+                        '//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
                     hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
                     hover.perform()
                     sleep(1)
                     element = WebDriverWait(self.driver, 100).until(
-                        EC.element_to_be_clickable((By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[1]/li[" + sub[k] + "]/a"))
+                        EC.element_to_be_clickable(
+                            (By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[" + caps[0]['Regions'] + "]/li[" + sub[k] + "]/a"))
                     )
                     try:
                         ActionChains(self.driver).click(element).perform()
