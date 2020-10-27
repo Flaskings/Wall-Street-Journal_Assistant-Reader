@@ -1,7 +1,7 @@
 from telnetlib import EC
 from time import sleep
 from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -249,48 +249,46 @@ class App:
                         'Culture']}]}
 
         ]
-        self.performance(1)
+        self.cover_look()
+        self.performance()
 
     def cover_look(self):  # todo: check cover news
-        pass
+        print("1 \tHome")
+        for tab in tabs:
+            for j in tab.keys():
+                print("%s \t%s" % (tab[j], j))
+                timeout = 15
+                try:
+                    element_present = EC.presence_of_element_located((By.XPATH, '//nav/ul/li[' + tab[j] + ']/a'))
+                    WebDriverWait(self.driver, timeout).until(element_present).click()
+                except TimeoutException:
+                    print("Timed out waiting for page to load")
+                sleep(8)
 
-    def performance(self, program):
+        self.driver.close()
 
-        if program == 0:
-            i = 0
-            print("1 \tHome")
-            for tab in tabs:
-                i += 1
-                for j in tab.keys():
-                    print("%s \t%s" % (tab[j], j))
-                    element = self.driver.find_element_by_xpath('//nav/ul/li[' + tab[j] + ']/a')  # tab
-                    element.click()
-                    sleep(1)
-
-            self.driver.close()
-
-        if program == 1:
-            index = 0
-            print(' '.join(tabs[0].keys()))
-            for sub in subs[:-2]:
-                for k in sub.keys():
-                    element_to_hover_over = self.driver.find_element_by_xpath(
-                        '//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
-                    hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
-                    hover.perform()
-                    sleep(1)
-                    element = WebDriverWait(self.driver, 100).until(
-                        EC.element_to_be_clickable(
-                            (By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[" + caps[0]['Regions'] + "]/li[" + sub[k] + "]/a"))
-                    )
-                    try:
-                        ActionChains(self.driver).click(element).perform()
-                        print(' '.join(subs[index].keys()))
-                        index += 1
-                    except WebDriverException:
-                        print("Element is not clickable")
-                    sleep(4)
-            self.driver.close()
+    def performance(self):
+        index = 0
+        print(' '.join(tabs[0].keys()))
+        for sub in subs[:-2]:
+            for k in sub.keys():
+                element_to_hover_over = self.driver.find_element_by_xpath(
+                    '//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
+                hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
+                hover.perform()
+                sleep(1)
+                element = WebDriverWait(self.driver, 100).until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[" + caps[0]['Regions'] + "]/li[" + sub[k] + "]/a"))
+                )
+                try:
+                    ActionChains(self.driver).click(element).perform()
+                    print(' '.join(subs[index].keys()))
+                    index += 1
+                except WebDriverException:
+                    print("Element is not clickable")
+                sleep(4)
+        self.driver.close()
 
 
 if __name__ == '__main__':
