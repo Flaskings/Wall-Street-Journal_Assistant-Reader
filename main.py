@@ -249,7 +249,7 @@ class App:
                         'Culture']}]}
 
         ]
-        self.cover_look()
+        # self.cover_look()
         self.performance()
 
     def cover_look(self):  # todo: check cover news
@@ -269,8 +269,12 @@ class App:
 
     def performance(self):
         index = 0
-        print(' '.join(tabs[0].keys()))
-        for sub in subs[:-2]:
+        print("TAB Key: " + ' '.join(tabs[0].keys()) + " - TAB Value: " + ' '.join(tabs[0].values()))
+        print("CAP Key: " + ' '.join(caps[0].keys()) + " - CAP Value: " + ' '.join(caps[0].values()))
+        y = ' '.join(caps[0].values())
+        x = slice(2,-4,1)  # ATTENTION leaving blank space among values may not work
+        print("SUBS SLICE DICT LIST:\n\t", subs[x])
+        for sub in subs[x]:
             for k in sub.keys():
                 element_to_hover_over = self.driver.find_element_by_xpath(
                     '//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
@@ -279,7 +283,7 @@ class App:
                 sleep(1)
                 element = WebDriverWait(self.driver, 100).until(
                     EC.element_to_be_clickable(
-                        (By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[" + caps[0]['Regions'] + "]/li[" + sub[k] + "]/a"))
+                        (By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[" + y + "]/li[" + sub[k] + "]/a"))
                 )
                 try:
                     ActionChains(self.driver).click(element).perform()
