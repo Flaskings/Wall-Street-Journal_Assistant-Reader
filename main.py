@@ -17,6 +17,10 @@ from data import tabs, subs
 class App:
     def __init__(self, ):
         self.error = None
+        self.i = 0
+        self.t = 0
+        self.x = 0
+        self.y = 0
         try:
             self.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
             self.error = False
@@ -71,34 +75,51 @@ class App:
 
         self.driver.close()
 
+    def switcher(self, program):
+        """switches all sections of the dropdown menu"""
+        if program == 1:
+            self.i, self.t = 0, 0
+            self.x = slice(0,7,1)  # ATTENTION leaving blank space among values may not work
+            self.y = tabs[0]['World']
+        if program == 2:
+            self.i, self.t = 7, 1
+            self.x = slice(7,11,1)
+            self.y = tabs[1]['U.S.']
+        if program == 3:
+            self.i, self.t = 11, 2
+            self.x = slice(11,13,1)
+            self.y = tabs[2]['Politics']
+        if program == 4:
+            self.i, self.t = 13, 4
+            self.x = slice(13,16,1)
+            self.y = tabs[4]['Business']
+        if program == 5:
+            self.i, self.t = 16, 5
+            self.x = slice(16,18,1)
+            self.y = tabs[5]['Tech']
+
+        return self.i, self.t, self.x, self.y
+
     def magazine(self):
-        """browse all sections of the dropdown menu"""
-        i_1, t_1 = 0, 0
-        x_1 = slice(0,7,1)  # ATTENTION leaving blank space among values may not work
-        y_1 = tabs[0]['World']
-        i_2, t_2 = 7, 1
-        x_2 = slice(7,11,1)
-        y_2 = tabs[1]['U.S.']
-        i_3, t_3 = 11, 2
-        x_3 = slice(11,13,1)
-        y_3 = tabs[2]['Politics']
-        print("TAB Key: " + ' '.join(tabs[t_3].keys()) + " - TAB Value: " + ' '.join(tabs[t_3].values()))
-        print("SUBS SLICE DICT LIST:\n\t", subs[x_3])
-        for sub in subs[x_3]:
+        """browses all sections of the dropdown menu"""
+        i, t, x, y = self.switcher(5)
+        print("TAB Key: " + ' '.join(tabs[t].keys()) + " - TAB Value: " + ' '.join(tabs[t].values()))
+        print("SUBS SLICE DICT LIST:\n\t", subs[x])
+        for sub in subs[x]:
             for k in sub.keys():
                 element_to_hover_over = self.driver.find_element_by_xpath(
-                    '//nav/ul/li[' + y_3 + ']/a')  # tab
+                    '//nav/ul/li[' + y + ']/a')  # tab
                 hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
                 hover.perform()
                 sleep(1)
                 element = WebDriverWait(self.driver, 100).until(
                     EC.element_to_be_clickable(
-                        (By.XPATH, "//nav/ul/li[" + y_3 + "]/div/div/ul[1]/li[" + sub[k] + "]/a"))
+                        (By.XPATH, "//nav/ul/li[" + y + "]/div/div/ul[1]/li[" + sub[k] + "]/a"))
                 )
                 try:
                     ActionChains(self.driver).click(element).perform()
-                    print(' '.join(subs[i_3].keys()))
-                    i_3 += 1
+                    print(' '.join(subs[i].keys()))
+                    i += 1
                 except WebDriverException:
                     print("Element is not clickable")
                 sleep(4)
