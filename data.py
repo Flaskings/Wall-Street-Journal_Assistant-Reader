@@ -24,18 +24,18 @@ subs = [{'Africa': '2'},  # LINK: WORLD
         {'Politics': '5'},
         {'Election 2020': '2'},  # LINK: POLITICS
         {'Campaign Wire': '3'},
-        {'Management': '2'}, # LINK BUSINESS
+        {'Management': '2'},  # LINK BUSINESS
         {'Tech/WSJ.D': '3'},
         {'The Future of Everything': '4'},
-        {'CIO Journal': '2'}, # LINK TECH
+        {'CIO Journal': '2'},  # LINK TECH
         {'The Future of Everything': '3'},
-        {'Bonds': '2'}, # LINK MARKETS
+        {'Bonds': '2'},  # LINK MARKETS
         {'Commercial Real Estate': '3'},
         {'Commodities & Futures': '4'},
         {'Stocks': '5'},
         {'Personal Finance': '6'},
         {'WSJ Money': '7'},
-        {'Arts': '2'}, # LINK LIFE & ARTS
+        {'Arts': '2'},  # LINK LIFE & ARTS
         {'Books': '3'},
         {'Cars': '4'},
         {'Food & Drink': '5'},
@@ -47,11 +47,11 @@ subs = [{'Africa': '2'},  # LINK: WORLD
         {'Sports': '11'},
         {'Style & Fashion': '12'},
         {'Travel': '13'},
-        {'Commercial Real Estate': '2'}, # LINK REAL STATE
+        {'Commercial Real Estate': '2'},  # LINK REAL STATE
         {'House of the Day': '3'},
-        {'Fashion': '2'}, # LINK WSJ MAGAZINE
-        {'Art & Design': '2'},
-        {'Travel': '2'},
-        {'Food': '2'},
-        {'Culture': '2'}
+        {'Fashion': '2'},  # LINK WSJ MAGAZINE
+        {'Art & Design': '3'},
+        {'Travel': '4'},
+        {'Food': '5'},
+        {'Culture': '6'}
         ]

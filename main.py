@@ -97,21 +97,37 @@ class App:
             self.i, self.t = 16, 5
             self.x = slice(16,18,1)
             self.y = tabs[5]['Tech']
+        if program == 6:
+            self.i, self.t = 18, 6
+            self.x = slice(18,24,1)
+            self.y = tabs[6]['Markets']
+        if program == 7:
+            self.i, self.t = 24, 8
+            self.x = slice(24,36,1)
+            self.y = tabs[8]['Life & Arts']
+        if program == 8:
+            self.i, self.t = 36, 9
+            self.x = slice(36,38,1)
+            self.y = tabs[9]['Real State']
+        if program == 9:
+            self.i, self.t = 38, 10
+            self.x = slice(38,-1,1)
+            self.y = tabs[10]['WSJ.Magazine']
 
         return self.i, self.t, self.x, self.y
 
     def magazine(self):
         """browses all sections of the dropdown menu"""
-        i, t, x, y = self.switcher(5)
+        i, t, x, y = self.switcher(1)
         print("TAB Key: " + ' '.join(tabs[t].keys()) + " - TAB Value: " + ' '.join(tabs[t].values()))
         print("SUBS SLICE DICT LIST:\n\t", subs[x])
         for sub in subs[x]:
+            self.driver.implicitly_wait(10)
             for k in sub.keys():
                 element_to_hover_over = self.driver.find_element_by_xpath(
                     '//nav/ul/li[' + y + ']/a')  # tab
                 hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
                 hover.perform()
-                sleep(1)
                 element = WebDriverWait(self.driver, 100).until(
                     EC.element_to_be_clickable(
                         (By.XPATH, "//nav/ul/li[" + y + "]/div/div/ul[1]/li[" + sub[k] + "]/a"))
