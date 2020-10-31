@@ -11,7 +11,7 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 
-from data import tabs, subs, caps
+from data import tabs, subs
 
 
 class App:
@@ -50,209 +50,13 @@ class App:
 
         self.main_url = 'https://www.wsj.com/'
         self.driver.get(self.main_url)
-        self.menu = [
-            {'U.S.':
-                 [{'Sections':
-                       ['Economy',
-                        'Law',
-                        'New',
-                        'York',
-                        'Politics']},
-                  {'Columns & Blogs':
-                       ['Real Time Economics',
-                        'Washington Wire']},
-                  {'More':
-                       ['WSJ Noted.',
-                        'Journal Report',
-                        'U.S.Video',
-                        "What's News Podcast"]}]
-             },
-            {'Politics':
-                 [{'Sections':
-                       ['Election 2020',
-                        'Campaign Wire']},
-                  {'More':
-                       ['WSJ/NBC News Poll',
-                        'Politics Video']}]
-             },
-            {'Economy':
-                 [{'Blogs': 'Real Time Economics'},
-                  {'WSJ Pro':
-                       ['Bankruptcy',
-                        'Central Banking',
-                        'Private Equity',
-                        'Strategic Intelligence',
-                        'Venture Capital']},
-                  {'More':
-                       ['Economic Forecasting Survey',
-                        'Economy Video']}]
-             },
-            {'Business':
-                 [{'Sections':
-                       ['Management',
-                        'Tech/WSJ.D',
-                        'The Future of Everything']},
-                  {'Industries':
-                       ['Aerospace & Defense'
-                        'Autos & Transportation'
-                        'Commercial Real Estate'
-                        'Consumer Products'
-                        'Energy'
-                        'Entrepreneurship'
-                        'Financial Services'
-                        'Food & Services'
-                        'Health Care'
-                        'Hospitality'
-                        'Law',
-                        'Manufacturing',
-                        'Media & Marketing',
-                        'Natural Resources',
-                        'Retail']},
-                  {'C-Suite':
-                       ['CFO Journal',
-                        'CIO Journal',
-                        'CMO Today',
-                        'Logistics Report',
-                        'Risk & Compliance',
-                        'The Experience Report']},
-                  {'Columns': 'Heard on the Street'},
-                  {'WSJ Pro':
-                       ['Artificial Intelligence',
-                        'Bankruptcy',
-                        'Central Banking',
-                        'Cybersecurity',
-                        'Private Equity',
-                        'Strategic Intelligence',
-                        'Venture Capital']},
-                  {'More':
-                       ['Business Video',
-                        'Journal Report',
-                        'Business Podcast']}]
-             },
-            {'Tech':
-                 [{'Sections':
-                       ['CIO Journal',
-                        'The Future of Everything']},
-                  {'Columns & Blogs':
-                       ['Christopher Mims',
-                        'Joanna Stern'
-                        'Julie Jargon']},
-                  {'More':
-                       ['Tech Video',
-                        'Tech Podcast',
-                        'Startup Stock Tracker']}]
-             },
-            {'Markets':
-                 [{'Sections':
-                       ['Bonds',
-                        'Commercial Real Estate',
-                        'Commodities & Futures',
-                        'Stocks',
-                        'Personal Finance',
-                        'WSJ Money']},
-                  {'Columns & Blogs':
-                       ['Heard on the Street',
-                        'MoneyBeat',
-                        'Wealth Adviser']},
-                  {'Market Data':
-                       ['Market Data Home',
-                        'U.S. Stocks', 'U.S. Stocks',
-                        'Currencies',
-                        'Companies',
-                        'Commodities',
-                        'Bonds & Rates',
-                        'Mutual Funds & ETFs']},
-                  {'More':
-                       ['CFO Journal',
-                        'Journal Report',
-                        'Markets Video',
-                        'Your Money Briefing Podcast',
-                        'Secrets of Wealthy Women Podcast',
-                        'Search Quotes and Companies']}],
-             },
-            {'Opinion':
-                 [{'Columnists':
-                       ['Gerard Baker',
-                        'Sadanand Dhume',
-                        'James Freeman',
-                        'William A. Galston',
-                        'Daniel Henninger',
-                        'Holman W. Jenkins',
-                        'Andy Kessler',
-                        'William McGurn',
-                        'Walter Russell Mead',
-                        'Peggy Noonan',
-                        "Mary Anastasia O'Grady",
-                        'Jason Riley',
-                        'Joseph Sternberg',
-                        'Kimberley A. Strassel']},
-                  {'Reviews':
-                       ['Books',
-                        'Film',
-                        'Television',
-                        'Theater',
-                        'Art',
-                        'Masterpiece Series',
-                        'Music',
-                        'Dance',
-                        'Opera',
-                        'Exhibition',
-                        'Cultural Commentary']
-                   },
-                  {'More':
-                       ['Editorials',
-                        'Commentary',
-                        'Future View',
-                        'Letters to the Editor',
-                        'The Weekend Interview',
-                        'Potomac Watch Podcast',
-                        'Foreign Edition Podcast',
-                        'Opinion Video',
-                        'Notable & Quotable',
-                        'Best of the Web Newsletter',
-                        'Morning Editorial Report Newsletter']}]
-             },
-            {'Life & Arts':
-                 [{'Sections':
-                       ['Arts',
-                        'Books',
-                        'Cars',
-                        'Food & Drink',
-                        'Health',
-                        'Ideas',
-                        'Reading & Retreating',
-                        'Real Estate',
-                        'Science',
-                        'Sports',
-                        'Style & Fashion',
-                        'Travel']},
 
-                  {'More':
-                       ['WSJ. Magazine',
-                        'WSJ Puzzles',
-                        'The Future of Everything',
-                        'Far & Away',
-                        'Life Video',
-                        'Arts Video']}],
-             },
-            {'Real State':
-                 [{'Sections':
-                       ['Commercial Real Estate',
-                        'House of the Day']},
-                  {'More': 'Real Estate Video'}]},
-            {'WSJ.Magazine':
-                 [{'Sections':
-                       ['Fashion',
-                        'Art & Design',
-                        'Travel',
-                        'Food',
-                        'Culture']}]}
+        # navigation modes
+        # self.cover()
+        self.magazine()
 
-        ]
-        # self.cover_look()
-        self.performance()
-
-    def cover_look(self):  # todo: check cover news
+    def cover(self):  # todo: check cover news
+        """browse all the covers of the main menu"""
         print("1 \tHome")
         for tab in tabs:
             for j in tab.keys():
@@ -267,31 +71,38 @@ class App:
 
         self.driver.close()
 
-    def performance(self):
-        index = 0
-        print("TAB Key: " + ' '.join(tabs[0].keys()) + " - TAB Value: " + ' '.join(tabs[0].values()))
-        print("CAP Key: " + ' '.join(caps[0].keys()) + " - CAP Value: " + ' '.join(caps[0].values()))
-        y = ' '.join(caps[0].values())
-        x = slice(2,-4,1)  # ATTENTION leaving blank space among values may not work
-        print("SUBS SLICE DICT LIST:\n\t", subs[x])
-        for sub in subs[x]:
+    def magazine(self):
+        """browse all sections of the dropdown menu"""
+        i_1, t_1 = 0, 0
+        x_1 = slice(0,7,1)  # ATTENTION leaving blank space among values may not work
+        y_1 = tabs[0]['World']
+        i_2, t_2 = 7, 1
+        x_2 = slice(7,11,1)
+        y_2 = tabs[1]['U.S.']
+        i_3, t_3 = 11, 2
+        x_3 = slice(11,13,1)
+        y_3 = tabs[2]['Politics']
+        print("TAB Key: " + ' '.join(tabs[t_3].keys()) + " - TAB Value: " + ' '.join(tabs[t_3].values()))
+        print("SUBS SLICE DICT LIST:\n\t", subs[x_3])
+        for sub in subs[x_3]:
             for k in sub.keys():
                 element_to_hover_over = self.driver.find_element_by_xpath(
-                    '//nav/ul/li[' + tabs[0]['World'] + ']/a')  # tab
+                    '//nav/ul/li[' + y_3 + ']/a')  # tab
                 hover = ActionChains(self.driver).move_to_element(element_to_hover_over)
                 hover.perform()
                 sleep(1)
                 element = WebDriverWait(self.driver, 100).until(
                     EC.element_to_be_clickable(
-                        (By.XPATH, "//nav/ul/li[" + tabs[0]['World'] + "]/div/div/ul[" + y + "]/li[" + sub[k] + "]/a"))
+                        (By.XPATH, "//nav/ul/li[" + y_3 + "]/div/div/ul[1]/li[" + sub[k] + "]/a"))
                 )
                 try:
                     ActionChains(self.driver).click(element).perform()
-                    print(' '.join(subs[index].keys()))
-                    index += 1
+                    print(' '.join(subs[i_3].keys()))
+                    i_3 += 1
                 except WebDriverException:
                     print("Element is not clickable")
                 sleep(4)
+
         self.driver.close()
 
 
