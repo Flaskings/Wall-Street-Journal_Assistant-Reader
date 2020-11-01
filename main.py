@@ -21,6 +21,8 @@ class App:
         self.t = 0
         self.x = 0
         self.y = 0
+        self.item = 0
+
         try:
             self.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
             self.error = False
@@ -51,6 +53,8 @@ class App:
             except Exception as e:
                 self.error = True
                 print('Opera browser not found in os\n', e)
+
+        print("USER AGENT:\n", self.driver.execute_script("return navigator.userAgent"))
 
         self.main_url = 'https://www.wsj.com/'
         self.driver.get(self.main_url)
@@ -134,7 +138,10 @@ class App:
                 )
                 try:
                     ActionChains(self.driver).click(element).perform()
+                    if self.item == 0:
+                        print("REAL-TIME PERFORMANCE:")
                     print(' '.join(subs[i].keys()))
+                    self.item += 1
                     i += 1
                 except WebDriverException:
                     print("Element is not clickable")
