@@ -1,5 +1,7 @@
 from telnetlib import EC
 from time import sleep
+
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException, TimeoutException
 from selenium.webdriver import ActionChains
@@ -61,7 +63,14 @@ class App:
 
         # navigation modes
         # self.cover()
-        self.magazine()
+        # self.magazine()
+        self.scrape()
+
+    def scrape(self):
+        soup = BeautifulSoup(self.driver.page_source, 'lxml')
+        print("JOURNAL CONTENTS:")
+        for link in soup.find_all('p'):
+            print(link.getText())
 
     def cover(self):  # todo: check cover news
         """browse all the covers of the main menu"""
@@ -83,39 +92,39 @@ class App:
         """switches all sections of the dropdown menu"""
         if program == 1:
             self.i, self.t = 0, 0
-            self.x = slice(0,7,1)  # ATTENTION leaving blank space among values may not work
+            self.x = slice(0, 7, 1)  # ATTENTION leaving blank space among values may not work
             self.y = tabs[0]['World']
         if program == 2:
             self.i, self.t = 7, 1
-            self.x = slice(7,11,1)
+            self.x = slice(7, 11, 1)
             self.y = tabs[1]['U.S.']
         if program == 3:
             self.i, self.t = 11, 2
-            self.x = slice(11,13,1)
+            self.x = slice(11, 13, 1)
             self.y = tabs[2]['Politics']
         if program == 4:
             self.i, self.t = 13, 4
-            self.x = slice(13,16,1)
+            self.x = slice(13, 16, 1)
             self.y = tabs[4]['Business']
         if program == 5:
             self.i, self.t = 16, 5
-            self.x = slice(16,18,1)
+            self.x = slice(16, 18, 1)
             self.y = tabs[5]['Tech']
         if program == 6:
             self.i, self.t = 18, 6
-            self.x = slice(18,24,1)
+            self.x = slice(18, 24, 1)
             self.y = tabs[6]['Markets']
         if program == 7:
             self.i, self.t = 24, 8
-            self.x = slice(24,36,1)
+            self.x = slice(24, 36, 1)
             self.y = tabs[8]['Life & Arts']
         if program == 8:
             self.i, self.t = 36, 9
-            self.x = slice(36,38,1)
+            self.x = slice(36, 38, 1)
             self.y = tabs[9]['Real State']
         if program == 9:
             self.i, self.t = 38, 10
-            self.x = slice(38,-1,1)
+            self.x = slice(38, -1, 1)
             self.y = tabs[10]['WSJ.Magazine']
 
         return self.i, self.t, self.x, self.y
