@@ -32,7 +32,8 @@ class App:
         # self.scrape()
         # self.scrapingLinks(self.main_url)
         # self.cover()
-        self.magazine()
+        # self.magazine()
+        self.drivers()
 
     def scrape(self):
         ua = UserAgent()
