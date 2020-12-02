@@ -17,6 +17,7 @@ from webdriver_manager.opera import OperaDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 
 from data import tabs, subs
+from target import point
 
 
 class App:
@@ -33,7 +34,8 @@ class App:
         # self.scrapingLinks(self.main_url)
         # self.cover()
         # self.magazine()
-        self.drivers()
+        # self.drivers()
+        print(point('Politics', 'More', 'Election 2020'))
 
     def scrape(self):
         ua = UserAgent()

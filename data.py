@@ -76,6 +76,18 @@ subs = [{'Africa': '2'},  # LINK: WORLD
 #  (6, 6, 2) Business -> WSJ Pro -> Artificial Intelligence
 #  (7, 1, 2) Tech -> Sections -> CIO Journal
 
+tab = [{'Home': 0},
+       {'World': 1},
+       {'U.S.': 2},
+       {'Politics': 3},
+       {'Economy': 4},
+       {'Business': 5},
+       {'Tech': 6},
+       {'Markets': 7},
+       {'Opinion': 8},
+       {'Life & Arts': 9},
+       {'Real State': 10},
+       {'WSJ.Magazine': 11}]
 
 maps = [{'Home': ''},
         {'World':
